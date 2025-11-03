@@ -14,7 +14,7 @@ const int ROWS = 4, COLS = 3, TESTS = 4; //now we have 3D array
 const int W1 = 10;
 
 int main() {
-    int results[ROWS][COLS][TESTS];
+    int results[TESTS][ROWS][COLS];
 
     string cd;
 
@@ -161,7 +161,7 @@ int main() {
             }
         }
     }
-}
+
 
     string labels[] = {"Read", "Sort", "Insert", "Delete"};
     cout << setw(W1) << "Operation" << setw(W1) << "Vector" << setw(W1) << "List"
@@ -169,10 +169,11 @@ int main() {
     for (int i = 0; i < 4; i++) {
         cout << setw(W1) << labels[i];
         for (int j = 0; j < COLS; j++) 
-            cout << setw(W1) << results[i][j];
+            cout << setw(W1) << results[test][i][j];
         cout << endl;
     }
     
 
     return 0;
+    }
 }
