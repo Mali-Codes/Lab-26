@@ -22,7 +22,7 @@ int main() {
     list<string> data_list;
     set<string> data_set;
     
-    for (int test = 0; test < TESTS; test++) {
+    for (int test = 0; test < TESTS; test++) {          // Allows for us to run multiple tests
         cout << "Running test " << (test + 1) << " of " << TESTS << "..." << endl;
         
         // Create fresh data structures for each test
@@ -40,7 +40,7 @@ int main() {
                             data_vector.push_back(cd);
                     auto end = chrono::high_resolution_clock::now();
                     auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                    results[test][0][i] = duration.count();
+                    results[test][0][i] = duration.count();  // have to change all of the results since we are in 3D now
                     break;
                 }
                 case 1: {  // read into a list
@@ -156,11 +156,12 @@ int main() {
                 data_set.erase(target_s);    
                 auto end = chrono::high_resolution_clock::now();
                 auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                results[3][i] = duration.count();
+                results[test][3][i] = duration.count();
                 break;
             }
         }
     }
+}
 
     string labels[] = {"Read", "Sort", "Insert", "Delete"};
     cout << setw(W1) << "Operation" << setw(W1) << "Vector" << setw(W1) << "List"
@@ -174,5 +175,4 @@ int main() {
     
 
     return 0;
-}
 }
