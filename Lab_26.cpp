@@ -10,47 +10,48 @@ using namespace std;
 
 // const int SZ = 20000, COLS = 3, ROWS = 4, TESTS = 4;
 const int STRUCTURES = 3;
-const int ROWS = 4, COLS = 3;
+const int ROWS = 4, COLS = 3, TESTS = 4; //now we have 3D array
 const int W1 = 10;
 
 int main() {
-    int results[ROWS][COLS];
+    int results[ROWS][COLS][TESTS];
     string cd;
     vector<string> data_vector;
     list<string> data_list;
     set<string> data_set;
-
-    // testing for READ operations
-    for (int i = 0; i < STRUCTURES; i++) {
-        ifstream fin("codes.txt");
-        auto start = chrono::high_resolution_clock::now();
-        switch(i) {
-            case 0: {  // read into a vector
-                while (fin >> cd)
-                        data_vector.push_back(cd);
-                auto end = chrono::high_resolution_clock::now();
-                auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                results[0][i] = duration.count();
-                break;
+    for (int test = 0; test < TESTS; test++) {
+        // testing for READ operations
+        for (int i = 0; i < STRUCTURES; i++) {
+            ifstream fin("codes.txt");
+            auto start = chrono::high_resolution_clock::now();
+            switch(i) {
+                case 0: {  // read into a vector
+                    while (fin >> cd)
+                            data_vector.push_back(cd);
+                    auto end = chrono::high_resolution_clock::now();
+                    auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+                    results[0][i] = duration.count();
+                    break;
+                }
+                case 1: {  // read into a list
+                    while (fin >> cd)
+                            data_list.push_back(cd);
+                    auto end = chrono::high_resolution_clock::now();
+                    auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+                    results[0][i] = duration.count();
+                    break;
+                }
+                case 2: {  // read into a set
+                    while (fin >> cd)
+                            data_set.insert(cd);
+                    auto end = chrono::high_resolution_clock::now();
+                    auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
+                    results[0][i] = duration.count();
+                    break;
+                }
             }
-            case 1: {  // read into a list
-                while (fin >> cd)
-                        data_list.push_back(cd);
-                auto end = chrono::high_resolution_clock::now();
-                auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                results[0][i] = duration.count();
-                break;
-            }
-            case 2: {  // read into a set
-                while (fin >> cd)
-                        data_set.insert(cd);
-                auto end = chrono::high_resolution_clock::now();
-                auto duration = chrono::duration_cast<chrono::microseconds>(end - start);
-                results[0][i] = duration.count();
-                break;
-            }
-        }
         fin.close();
+        
     }
 
     // testing for SORT operations
